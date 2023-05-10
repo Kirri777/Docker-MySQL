@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    ports:
+      - ${DB_3306}:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ../app/mysql:/var/lib/mysql
+      - ../app/backup:/backup
+    networks:
+      - ${PROJECT_NETWORK}
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      - PMA_HOST=mariadb
+    ports:
+      - ${PHPMYADMIN_80}:80
+    volumes:
+      - ../app/phpmyadmin/sessions:/sessions
+    depends_on:
+      - mariadb
+    networks:
+      - ${PROJECT_NETWORK}
+
+networks:
+  symfony_app:
+    name: ${PROJECT_NETWORK}
