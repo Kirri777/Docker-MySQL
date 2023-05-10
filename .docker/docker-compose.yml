@@ -15,7 +15,7 @@ services:
       - ../app/mysql:/var/lib/mysql
       - ../app/backup:/backup
     networks:
-      - ${PROJECT_NETWORK}
+      - mariadb_db
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -28,8 +28,8 @@ services:
     depends_on:
       - mariadb
     networks:
-      - ${PROJECT_NETWORK}
+      - mariadb_db
 
 networks:
-  symfony_app:
+  mariadb_db:
     name: ${PROJECT_NETWORK}
