@@ -2,6 +2,11 @@ version: '3.1'
 
 services:
   mariadb:
+    build:
+      context: ../
+      dockerfile: ./.docker/Dockerfile
+      args:
+        TIMEZONE: ${TIMEZONE}
     image: mariadb:latest
     restart: always
     ports:
@@ -11,6 +16,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: ${TIMEZONE}
     volumes:
       - ../app/mysql:/var/lib/mysql
       - ../app/backup:/backup
