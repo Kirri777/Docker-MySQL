@@ -49,3 +49,39 @@ http://127.0.0.1:81/ - PhpMyAdmin (`PHPMYADMIN_80` in `.env` config)
     SET time_zone = 'Europe/Warsaw';
     SET GLOBAL time_zone = 'Europe/Warsaw';
     ```
+
+<br />
+
+## Problems
+
+1. Problem
+
+    ```
+    Error during session start; please check your PHP and/or webserver log file and configure your PHP installation properly. Also ensure that cookies are enabled in your browser.
+
+    session_start(): open(SESSION_FILE, O_RDWR) failed: Permission denied (13)
+
+    session_start(): Failed to read session data: files (path: /sessions)
+    ```
+
+    To fix the problem, you need to add both 777 permissions and root ownership to the sessions folder.
+
+    Here's how you can do it:
+
+    1. Open a terminal or command prompt on a container and navigate to the `/` folder.
+
+    2. Run the following command to change the ownership to root:
+
+        ```
+        chown root sessions
+        ```
+
+        This command changes the owner of the sessions folder to root.
+
+    3. Run the following command to add 777 permissions:
+
+        ```
+        chmod 777 sessions
+        ```
+
+        This command grants read, write, and execute permissions to all users for the sessions folder.
