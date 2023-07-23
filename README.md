@@ -56,6 +56,9 @@ http://127.0.0.1:81/ - PhpMyAdmin (`PHPMYADMIN_80` in `.env` config)
 
 1. Problem
 
+   ![image](https://github.com/Kirri777/Docker-MySQL/assets/32429348/473091d8-36f0-49ae-bb6d-79652bef316b)
+
+
     ```
     Error during session start; please check your PHP and/or webserver log file and configure your PHP installation properly. Also ensure that cookies are enabled in your browser.
 
