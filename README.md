@@ -76,7 +76,7 @@ http://127.0.0.1:81/ - PhpMyAdmin (`PHPMYADMIN_80` in `.env` config)
     2. Run the following command to change the ownership to root:
 
         ```
-        chown root sessions
+        chown -R root:root ./sessions
         ```
 
         This command changes the owner of the sessions folder to root.
@@ -84,7 +84,7 @@ http://127.0.0.1:81/ - PhpMyAdmin (`PHPMYADMIN_80` in `.env` config)
     3. Run the following command to add 777 permissions:
 
         ```
-        chmod 777 sessions
+        chmod 777 ./sessions
         ```
 
         This command grants read, write, and execute permissions to all users for the sessions folder.
