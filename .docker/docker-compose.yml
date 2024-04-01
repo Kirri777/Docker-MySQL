@@ -2,6 +2,7 @@ version: '3.1'
 
 services:
   mariadb:
+    container_name: MariaDB
     build:
       context: ../
       dockerfile: ./.docker/Dockerfile
@@ -9,6 +10,7 @@ services:
         TIMEZONE: ${TIMEZONE}
     image: mariadb:latest
     restart: always
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci 
     ports:
       - ${DB_3306}:3306
     environment:
@@ -24,6 +26,7 @@ services:
       - mariadb_db
 
   phpmyadmin:
+    container_name: MariaDB-PHPMyAdmin
     image: phpmyadmin/phpmyadmin:latest
     environment:
       - PMA_HOST=mariadb
